@@ -7,11 +7,11 @@ class DatabaseConnection(ABC):
 
 class MySQLConnection(DatabaseConnection):
     def connect(self):
-        print("Conectando ao banco de dados MySQL...")
+        print("Conectado ao banco de dados MySQL...")
 
 class PostgreSQLConnection(DatabaseConnection):
     def connect(self):
-        print("Conectando ao banco de dados PostgreSQL...")
+        print("Conectado ao banco de dados PostgreSQL...")
 
 class ConnectionFactory(ABC):
     @abstractmethod
