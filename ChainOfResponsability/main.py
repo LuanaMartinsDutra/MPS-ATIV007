@@ -20,9 +20,11 @@ def print_validation_message(is_valid: bool, request: Request):
 
 def main():
     form_data_1 = Request('gdsl', '1234', 'lima@gmail.com')
-    form_data_2 = Request('gdsl', '1234', 'lima@gmail.com')
+    form_data_2 = Request('gdsl', '1234abc', 'lima@gmail.com')
+    form_data_3 = Request('', '1234abc', 'lima@gmail.com')
 
     print_validation_message(is_valid_form(form_data_1), form_data_1)
     print_validation_message(is_valid_form(form_data_2), form_data_2)
+    print_validation_message(is_valid_form(form_data_3), form_data_3)
 
 main()
