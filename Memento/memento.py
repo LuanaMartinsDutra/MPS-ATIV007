@@ -25,3 +25,24 @@ class Originator:
     def restore_state(self, memento):
         self._state = memento.get_state()
         print(f"Originator: Estado restaurado para {self._state}")
+
+
+class Caretaker:
+    """
+    Classe Caretaker é responsável por armazenar os Mementos e garantir que não sejam alterados.
+    """
+    def __init__(self, originator):
+        self._mementos = []
+        self._originator = originator
+        
+    def backup(self):
+        print("Caretaker: Fazendo backup do estado do Originator...")
+        self._mementos.append(self._originator.save_state())
+        
+    def undo(self):
+        if not self._mementos:
+            return
+        
+        memento = self._mementos.pop()
+        print(f"Caretaker: Restaurando estado para {memento.get_state()}")
+        self._originator.restore_state(memento)
