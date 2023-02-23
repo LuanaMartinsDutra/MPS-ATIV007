@@ -46,3 +46,22 @@ class Caretaker:
         memento = self._mementos.pop()
         print(f"Caretaker: Restaurando estado para {memento.get_state()}")
         self._originator.restore_state(memento)
+
+# Exemplo de uso:
+if __name__ == "__main__":
+    # Cria o Originator e o Caretaker
+    originator = Originator("Estado Inicial")
+    caretaker = Caretaker(originator)
+    
+    # Faz mudanças no estado do Originator e faz backups
+    caretaker.backup()
+    originator.set_state("Estado 1")
+    caretaker.backup()
+    originator.set_state("Estado 2")
+    caretaker.backup()
+    originator.set_state("Estado 3")
+    
+    # Restaura o estado anterior usando o Caretaker
+    caretaker.undo()
+    caretaker.undo()
+    caretaker.undo()
