@@ -1,4 +1,4 @@
-# Chain Of Responsability
+# Chain Of Responsibility
 
 O **Chain of Responsibility** é um padrão de projeto
 comportamental que permite que você passe pedidos por uma
