@@ -41,6 +41,7 @@ class Linkedin(PostagemDecorator):
     def __init__(self, decorated_post):
         super().__init__(decorated_post)
 
+        
     def criar_postagem(self):
         return f"{self.decorated_post.criar_postagem()}  {self._plataforma}"
 
@@ -52,6 +53,7 @@ def mostrar_post():
     print(post.criar_postagem())
     print("-----Viagem para o México----- \n")
 
+    
 def profissional():
     post = ConcretePostagem()
     post = Linkedin(post)
@@ -59,6 +61,7 @@ def profissional():
     print(post.criar_postagem())
     print("-----Viagem a negócios para China----- \n")
 
+    
 if __name__ == '__main__':
     mostrar_post() 
     profissional()
