@@ -35,11 +35,11 @@ class DatabaseClient:
         connection.connect()
 
 
+if __name__ == "__main__":
+    mysql_factory = MySQLConnectionFactory()
+    client = DatabaseClient(mysql_factory)
+    client.connect_to_database()
 
-mysql_factory = MySQLConnectionFactory()
-client = DatabaseClient(mysql_factory)
-client.connect_to_database()
-
-postgresql_factory = PostgreSQLConnectionFactory()
-client = DatabaseClient(postgresql_factory)
-client.connect_to_database()
+    postgresql_factory = PostgreSQLConnectionFactory()
+    client = DatabaseClient(postgresql_factory)
+    client.connect_to_database()
