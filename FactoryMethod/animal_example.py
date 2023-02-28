@@ -39,11 +39,11 @@ class AnimalClient:
         animal = self.factory.create_animal()
         return animal.make_sound()
 
+if __name__ == "__main__":
+    dog_factory = DogFactory()
+    client = AnimalClient(dog_factory)
+    print(client.get_animal_sound())
 
-dog_factory = DogFactory()
-client = AnimalClient(dog_factory)
-print(client.get_animal_sound())
-
-cat_factory = CatFactory()
-client = AnimalClient(cat_factory)
-print(client.get_animal_sound())
+    cat_factory = CatFactory()
+    client = AnimalClient(cat_factory)
+    print(client.get_animal_sound())
