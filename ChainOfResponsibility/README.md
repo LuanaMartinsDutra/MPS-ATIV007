@@ -1,4 +1,5 @@
 # Chain Of Responsibility
+> Feito por **Gabriel Dos Santos Lima - 2115310010**
 
 O **Chain of Responsibility** é um padrão de projeto
 comportamental que permite que você passe pedidos por uma
