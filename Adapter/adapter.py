@@ -1,3 +1,5 @@
+# Feito por Arthur Uguen de Mendonça
+
 """ 
 A classe Old retorna o valor no tipo String 
 """
