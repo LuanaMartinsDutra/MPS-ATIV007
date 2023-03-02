@@ -1,6 +1,23 @@
-# Larry Amaral Reis - 2115310067
 import copy
-
+# Larry Amaral Reis - 2115310067
+#      +--------------+
+#      | Stormtrooper |
+#      +--------------+
+#      | - name       |
+#      | - age        |
+#      | - designation|
+#      +--------------+
+#      | + clone()    |
+#      +--------------+
+#                ^
+#                |
+#       +-----------------+
+#       |                 |
+#+----------------+  +--------------+
+#|tk_421_prototype|  |     tk_421   |
+#+----------------+  +--------------+
+#|                |  |              |
+#+----------------+  +--------------+
 
 class Stormtrooper:
     def __init__(self, name, age, designation):
@@ -19,7 +36,7 @@ tk_421_prototype = Stormtrooper("TK-421", 29, "Trooper")
 tk_421 = tk_421_prototype.clone()
 
 # Modificando a propriedade do novo Stormtrooper
-#tk_421.designation = "Squad Leader"
+tk_421.designation = "Squad Leader"
 
 # Imprimindo as informações dos Stormtroopers
 print(tk_421_prototype.name, tk_421_prototype.age, tk_421_prototype.designation)
