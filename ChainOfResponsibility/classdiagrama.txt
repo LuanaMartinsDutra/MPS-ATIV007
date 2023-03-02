@@ -1,0 +1,42 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Handler <<interface>>{
+    + set_next(next: Handler): void
+    + handle(request: Request): bool
+}
+
+class BaseHandler implements Handler{
+    - next: Handler
+    + set_next(next: Handler): void
+    + handle(request: Request): bool
+}
+
+class FormHandler extends BaseHandler{
+    + handle(request: Request): bool
+}
+
+class EmailHandler extends BaseHandler{
+    + handle(request: Request): bool
+}
+
+class PasswordHandler extends BaseHandler{
+    + handle(request: Request): bool
+}
+
+class Form{
+    - request: Request
+    + is_valid_form(): bool
+}
+
+class Request{
+    - username: string
+    - password: string
+    - email: string
+}
+
+Form --> Request
+Form --- Handler
+
+
+@enduml
