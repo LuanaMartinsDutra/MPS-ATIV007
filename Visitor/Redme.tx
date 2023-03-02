@@ -1,0 +1,10 @@
+    O código define uma estrutura hierárquica de classes para modelar formas geométricas
+e sua exportação para XML. A classe abstrata Shape define a interface comum para todas
+as formas, incluindo os métodos abstratos move, draw e accept. As subclasses Circle,
+Rectangle e CompoundShape implementam a classe Shape e representam círculos, retângulos
+e formas compostas, respectivamente.
+
+    A classe Visitor representa um padrão de projeto que permite executar uma operação em todas
+as formas, independentemente da sua classe concreta. A classe XMLExportVisitor implementa Visitor
+e exporta cada forma para XML. A classe Application representa a aplicação que contém uma lista de
+todas as formas e permite exportá-las usando o visitante XMLExportVisitor.
