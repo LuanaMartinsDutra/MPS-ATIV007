@@ -38,8 +38,17 @@ class ToDoList:
         for task in self.list:
             print("- " + task[1])
 
-# Facade
 
+
+
+
+
+
+
+
+            
+
+# Facade
 class Facade:
     def __init__(self):
         self.deco = DecoratedText()
@@ -92,6 +101,17 @@ class Facade:
         for task in aux:
             if task[2] == 2:
                 self.deco.print_decorated_text(str(task[0]) + " - " + task[1], 4)
+
+
+
+
+
+
+
+
+
+
+
 
 ## Aplicação com o Facade
 facade = Facade()

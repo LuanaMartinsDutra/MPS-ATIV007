@@ -1,3 +1,7 @@
+# Integrantes:
+# Tiago Farias Barbosa 2115310025
+# Nickolas Javier Santos Livero 2115310042
+
 from user_controller import UserController
 from user_view import UserView
 from user_model import UserDAO
