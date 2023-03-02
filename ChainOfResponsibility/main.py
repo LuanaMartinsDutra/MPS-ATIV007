@@ -4,27 +4,30 @@ from handlers.form_handler import FormHandler
 from handlers.password_handler import PasswordHandler
 
 
-def is_valid_form(request: Request) -> bool:
-    form_handler = FormHandler()
-    email_handler = EmailHandler() 
-    password_handler = PasswordHandler()
+class Form:
+    def __init__(self, request: Request):
+        self.request = request
 
-    form_handler.set_next(email_handler)
-    email_handler.set_next(password_handler)
+    def is_valid_form(self) -> bool:
+        # Instancia os handlers
+        form_handler = FormHandler()
+        email_handler = EmailHandler() 
+        password_handler = PasswordHandler()
 
-    return form_handler.handle(request)
+        # Configura a corrente de handlers
+        form_handler.set_next(email_handler)
+        email_handler.set_next(password_handler)
 
-def print_validation_message(is_valid: bool, request: Request):
-    print(request)
+        return form_handler.handle(self.request)
+
+def print_validation_message(is_valid: bool):
     print("Formulário válido" if is_valid else "Formulário inválido.")
 
 def main():
-    form_data_1 = Request('gdsl', '1234', 'lima@gmail.com')
-    form_data_2 = Request('gdsl', '1234abc', 'lima@gmail.com')
-    form_data_3 = Request('', '1234abc', 'lima@gmail.com')
+    # Criando o formulário 
+    form = Form(Request('gdsl', '1234', 'lima@gmail.com'))
 
-    print_validation_message(is_valid_form(form_data_1), form_data_1)
-    print_validation_message(is_valid_form(form_data_2), form_data_2)
-    print_validation_message(is_valid_form(form_data_3), form_data_3)
+    # Imprime se o formulário é válido ou não
+    print_validation_message(form.is_valid_form())
 
 main()
