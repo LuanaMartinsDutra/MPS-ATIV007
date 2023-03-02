@@ -1,60 +1,51 @@
-from abc import ABC, abstractmethod
+# Manuela Cristina Pereira Bastos (2115310038)
 
-class Inseto(ABC):
-
-    @abstractmethod
-    def nascer(self):
-        pass
-
-    @abstractmethod
-    def crescer(self):
-        pass
-
-    @abstractmethod
-    def reproduzir(self):
-        pass
-
-    @abstractmethod
-    def morrer(self):
-        pass
-
+from abc import ABC
+class Insetos(ABC):
     def cicloDeVida(self):
         self.nascer()
-        self.crescer()
+        self.comer()
         self.reproduzir()
         self.morrer()
 
-class Lesma(Inseto):
-
     def nascer(self):
-        print("A lesma nasceu")
+        pass
 
-    def crescer(self):
-        print("A lesma está comendo")
+    def comer(self):
+        pass
 
     def reproduzir(self):
-        print("A lesma está se reproduzindo")
+        pass
 
     def morrer(self):
-        print("A lesma morreu")
+        pass
 
-class Besouro(Inseto):
 
+class Mariposa(Insetos):
     def nascer(self):
-        print("O besouro nasceu")
+        print("A mariposa está saindo do casulo")
 
-    def crescer(self):
-        print("O besouro está coletando néctar")
+    def comer(self):
+        print("A mariposa está se alimentando")
+
+
+class Besouro(Insetos):
+    def comer(self):
+        print("O besouro está se alimentando")
+
+    def reproduzir(self):
+        print("O besouro está se reproduzindo")
 
     def morrer(self):
         print("O besouro morreu")
 
-lesma = Lesma()
 
-besouro = Besouro()
+def maePergunta(insetos: Insetos):
+    insetos.cicloDeVida()
 
-print("Ciclo de vida da formiga:")
-lesma.cicloDeVida()
-
-print("Ciclo de vida da abelha:")
-besouro.cicloDeVida()
+if __name__ == '__main__':
+    print("A mariposa no jardim está fazendo o que?")
+    maePergunta(Mariposa())
+    print(" ")
+    print("O besouro no jardim está fazendo o que?")
+    maePergunta(Besouro())
