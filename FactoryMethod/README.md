@@ -11,7 +11,7 @@ Como exemplo, no arquivo ```animal_example.py``` são implementadas classes util
 
 <img width="600" src="./img/animal_diagram.png"/>
 
-Obs: a classe ```AnimalClient``` é a representação genérica de uma classe de neegócios que, sem o AnimalFactory, precisaria instanciar os tipos de Animal diretamente.
+Obs: a classe ```AnimalClient``` é a representação genérica de uma classe de negócios que, sem o AnimalFactory, precisaria instanciar os tipos de Animal diretamente.
 
 
 Outro exemplo implementado, que mostra ilustra o padrão estrutural do FactoryMethod, está contido no arquivo ```database_example.py```, em que são implementadas classes para lidar com diferentes conexões de Banco de Dados. E, conforme ilustrado abaixo, também se assemelha muito a estrutura padrão do FactoryMethod:
