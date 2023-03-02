@@ -18,7 +18,7 @@ object_flyweight = ObjectFlyweight()
 
 object1 = object_flyweight.get_object('circle', 'green')
 object2 = object_flyweight.get_object('square', 'blue')
-object3 = object_flyweight.get_object('circle', 'red')
+object3 = object_flyweight.get_object('circle', 'green')
 
 print("Objeto 1:", object1.name, object1.color)
 print("Objeto 2:", object2.name, object2.color)
