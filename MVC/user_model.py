@@ -1,3 +1,7 @@
+# Integrantes:
+# Tiago Farias Barbosa 2115310025
+# Nickolas Javier Santos Livero 2115310042
+
 class User:
     def __init__(self, name: str, email: str):
         self.name = name
