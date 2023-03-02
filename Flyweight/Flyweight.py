@@ -7,23 +7,18 @@ class ObjectFlyweight:
     def __init__(self):
         self.objects = {}
 
-    def get_object(self, name):
+    def get_object(self, name, color):
         if name not in self.objects:
-            self.objects[name] = Object(name, None)
+            self.objects[name] = Object(name, color)
         return self.objects[name]
 
 
 # Código de teste
 object_flyweight = ObjectFlyweight()
 
-object1 = object_flyweight.get_object('circle')
-object1.color = 'green'
-
-object2 = object_flyweight.get_object('square')
-object2.color = 'blue'
-
-object3 = object_flyweight.get_object('circle')
-object3.color = 'red'
+object1 = object_flyweight.get_object('circle', 'green')
+object2 = object_flyweight.get_object('square', 'blue')
+object3 = object_flyweight.get_object('circle', 'green')
 
 print("Objeto 1:", object1.name, object1.color)
 print("Objeto 2:", object2.name, object2.color)
