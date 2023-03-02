@@ -3,133 +3,122 @@
 # ALexandre Bruno Mota dos Santos
 
 # Importa a classe ABC (Abstract Base Class) e o decorador abstractmethod
+from __future__ import annotations
 from abc import ABC, abstractmethod
+from typing import List
 
 
-# Define uma classe abstrata Shape que herda da classe abstrata ABC
+class Component(ABC):
+    """
+    The Component interface declares an `accept` method that should take the
+    base visitor interface as an argument.
+    """
 
-
-class Shape(ABC):
-    # Define um método abstrato move com dois parâmetros
     @abstractmethod
-    def move(self, x, y):
+    def accept(self, visitor: Visitor) -> None:
         pass
-    
-    # Define um método abstrato draw
+
+
+class ConcreteComponentA(Component):
+    """
+    Each Concrete Component must implement the `accept` method in such a way
+    that it calls the visitor's method corresponding to the component's class.
+    """
+
+    def accept(self, visitor: Visitor) -> None:
+        """
+        Note that we're calling `visitConcreteComponentA`, which matches the
+        current class name. This way we let the visitor know the class of the
+        component it works with.
+        """
+
+        visitor.visit_concrete_component_a(self)
+
+    def exclusive_method_of_concrete_component_a(self) -> str:
+        """
+        Concrete Components may have special methods that don't exist in their
+        base class or interface. The Visitor is still able to use these methods
+        since it's aware of the component's concrete class.
+        """
+
+        return "A"
+
+
+class ConcreteComponentB(Component):
+    """
+    Same here: visitConcreteComponentB => ConcreteComponentB
+    """
+
+    def accept(self, visitor: Visitor):
+        visitor.visit_concrete_component_b(self)
+
+    def special_method_of_concrete_component_b(self) -> str:
+        return "B"
+
+
+class Visitor(ABC):
+    """
+    The Visitor Interface declares a set of visiting methods that correspond to
+    component classes. The signature of a visiting method allows the visitor to
+    identify the exact class of the component that it's dealing with.
+    """
+
     @abstractmethod
-    def draw(self):
+    def visit_concrete_component_a(self, element: ConcreteComponentA) -> None:
         pass
-    
-    # Define um método abstrato accept com um parâmetro v
+
     @abstractmethod
-    def accept(self, v):
+    def visit_concrete_component_b(self, element: ConcreteComponentB) -> None:
         pass
 
 
-# A classe Circle representa um círculo e herda da classe Shape.
+"""
+Concrete Visitors implement several versions of the same algorithm, which can
+work with all concrete component classes.
+
+You can experience the biggest benefit of the Visitor pattern when using it with
+a complex object structure, such as a Composite tree. In this case, it might be
+helpful to store some intermediate state of the algorithm while executing
+visitor's methods over various objects of the structure.
+"""
 
 
-class Circle(Shape):
-    def __init__(self, x, y, radius):
-        self.x = x
-        self.y = y
-        self.radius = radius
-        
-    def move(self, x, y):
-        self.x += x
-        self.y += y
-        
-    def draw(self):
-        print(f"Drawing circle with center ({self.x}, {self.y}) and radius {self.radius}")
-        
-    def accept(self, v):
-        v.visit_circle(self)
+class ConcreteVisitor1(Visitor):
+    def visit_concrete_component_a(self, element) -> None:
+        print(f"{element.exclusive_method_of_concrete_component_a()} + ConcreteVisitor1")
+
+    def visit_concrete_component_b(self, element) -> None:
+        print(f"{element.special_method_of_concrete_component_b()} + ConcreteVisitor1")
 
 
-# A classe Rectangle representa um retângulo e herda da classe Shape.
+class ConcreteVisitor2(Visitor):
+    def visit_concrete_component_a(self, element) -> None:
+        print(f"{element.exclusive_method_of_concrete_component_a()} + ConcreteVisitor2")
+
+    def visit_concrete_component_b(self, element) -> None:
+        print(f"{element.special_method_of_concrete_component_b()} + ConcreteVisitor2")
 
 
-class Rectangle(Shape):
-    def __init__(self, x, y, width, height):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        
-    def move(self, x, y):
-        self.x += x
-        self.y += y
-        
-    def draw(self):
-        print(f"Drawing rectangle with top left corner ({self.x}, {self.y}) and dimensions ({self.width}, {self.height})")
-        
-    def accept(self, v):
-        v.visit_rectangle(self)
+def client_code(components: List[Component], visitor: Visitor) -> None:
+    """
+    The client code can run visitor operations over any set of elements without
+    figuring out their concrete classes. The accept operation directs a call to
+    the appropriate operation in the visitor object.
+    """
+
+    # ...
+    for component in components:
+        component.accept(visitor)
+    # ...
 
 
-# A classe CompoundShape representa uma forma composta que consiste em outras formas.
+if __name__ == "__main__":
+    components = [ConcreteComponentA(), ConcreteComponentB()]
 
+    print("The client code works with all visitors via the base Visitor interface:")
+    visitor1 = ConcreteVisitor1()
+    client_code(components, visitor1)
 
-class CompoundShape(Shape):
-    def __init__(self):
-        self.shapes = []
-        
-    def add(self, shape):
-        self.shapes.append(shape)
-        
-    def move(self, x, y):
-        for shape in self.shapes:
-            shape.move(x, y)
-        
-    def draw(self):
-        for shape in self.shapes:
-            shape.draw()
-        
-    def accept(self, v):
-        v.visit_compound_shape(self)
-
-
-# A classe Visitor representa um visitante que visita cada forma e executa uma operação nela.
-class Visitor:
-    def visit_dot(self, dot):
-        pass
-    
-    def visit_circle(self, circle):
-        pass
-    
-    def visit_rectangle(self, rectangle):
-        pass
-    
-    def visit_compound_shape(self, compound_shape):
-        pass
-    
-
-# A classe XMLExportVisitor representa um visitante que exporta cada forma para XML.
-
-
-class XMLExportVisitor(Visitor):
-    def visit_dot(self, dot):
-        print("Exporting dot to XML")
-    
-    def visit_circle(self, circle):
-        print("Exporting circle to XML")
-    
-    def visit_rectangle(self, rectangle):
-        print("Exporting rectangle to XML")
-    
-    def visit_compound_shape(self, compound_shape):
-        print("Exporting compound shape to XML")
-        
-
-# A classe Application representa a aplicação que contém uma lista de todas as formas e permite exportá-las.
-
-
-class Application:
-    def __init__(self):
-        self.allShapes = []  # Inicializa a lista de formas vazia.
-    
-    def add_shape(self, shape):
-        self.allShapes.append(shape)
-    
-    def export(self):
-        exportVisitor =
+    print("It allows the same client code to work with different types of visitors:")
+    visitor2 = ConcreteVisitor2()
+    client_code(components, visitor2)
