@@ -10,17 +10,16 @@ ou substituídas sem afetar a abstração.
     Classe abstrata que define uma forma geométrica.
 """
 class Shape:
-
-    def _init_(self, drawing_api):
+    def __init__(self, drawing_api):
         self.drawing_api = drawing_api
 
     def draw(self):
         pass
 
+
 class Circle(Shape):
-    
-    def _init_(self, x, y, radius, drawing_api):
-        super()._init_(drawing_api)
+    def __init__(self, x, y, radius, drawing_api):
+        super().__init__(drawing_api)
         self.x = x
         self.y = y
         self.radius = radius
@@ -28,34 +27,45 @@ class Circle(Shape):
     def draw(self):
         self.drawing_api.draw_circle(self.x, self.y, self.radius)
 
+
 class Square(Shape):
-    def _init_(self, x, y, side, drawing_api):
-        super()._init_(drawing_api)
+    def __init__(self, x, y, size, drawing_api):
+        super().__init__(drawing_api)
         self.x = x
         self.y = y
-        self.side = side
+        self.size = size
 
-class DrawingAPI1:
+    def draw(self):
+        self.drawing_api.draw_square(self.x, self.y, self.size)
+
+
+class DrawingAPIOne:
     def draw_circle(self, x, y, radius):
-        print(f"API1 desenhando um círculo em ({x}, {y}) com raio {radius}")
+        print(f"API 1 desenha um círculo de raio {radius} na posição ({x}, {y})")
 
-    def draw_square(self, x, y, side):
-        print(f"API1 desenhando um quadrado em ({x}, {y}) com lado {side}")
+    def draw_square(self, x, y, size):
+        print(f"API 1 desenha um quadrado de lado {size} na posição ({x}, {y})")
 
-class DrawingAPI2:
+
+class DrawingAPITwo:
     def draw_circle(self, x, y, radius):
-        print(f"API2 desenhando um círculo em ({x}, {y}) com raio {radius}")
+        print(f"///////////////////////////////////////////////////////////////")
+        print(f"API 2 desenha um círculo de raio {radius} na posição ({x}, {y})")
+        print(f"///////////////////////////////////////////////////////////////\n")
 
-    def draw_square(self, x, y, side):
-        print(f"API2 desenhando um quadrado em ({x}, {y}) com lado {side}")
+    def draw_square(self, x, y, size):
+        print(f"///////////////////////////////////////////////////////////////")
+        print(f"API 2 desenha um quadrado de lado {size} na posição ({x}, {y})")
+        print(f"///////////////////////////////////////////////////////////////\n")
 
 
-# Exemplo de uso
-if __name__ == "__main__":
-    # Criando um círculo com a API1
-    circle1 = Circle(1, 2, 3, DrawingAPI1())
+def main():
+    circle1 = Circle(1, 2, 3, DrawingAPIOne())
     circle1.draw()
 
-    # Criando um quadrado com a API2
-    square1 = Square(4, 5, 6, DrawingAPI2())
+    square1 = Square(5, 7, 9, DrawingAPITwo())
     square1.draw()
+
+
+if __name__ == "__main__":
+    main()
