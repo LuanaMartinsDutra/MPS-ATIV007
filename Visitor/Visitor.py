@@ -2,16 +2,15 @@
 
 # ALexandre Bruno Mota dos Santos
 
-# Importa a classe ABC (Abstract Base Class) e o decorador abstractmethod
+# Importa Das Blibiotecas
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import List
 
-
 class Component(ABC):
     """
-    The Component interface declares an `accept` method that should take the
-    base visitor interface as an argument.
+    A interface Component declara um método accept que deve receber
+    como argumento a interface base do visitante.
     """
 
     @abstractmethod
@@ -21,24 +20,24 @@ class Component(ABC):
 
 class ConcreteComponentA(Component):
     """
-    Each Concrete Component must implement the `accept` method in such a way
-    that it calls the visitor's method corresponding to the component's class.
+    Cada componente concreto deve implementar o método accept de tal forma que
+    ele chama o método do visitante correspondente à classe do componente.
     """
 
     def accept(self, visitor: Visitor) -> None:
         """
-        Note that we're calling `visitConcreteComponentA`, which matches the
-        current class name. This way we let the visitor know the class of the
-        component it works with.
+        Note que estamos chamando visitConcreteComponentA, que corresponde ao nome da
+        classe atual. Dessa forma, informamos ao visitante a classe do componente com
+        o qual ele está trabalhando.
         """
 
         visitor.visit_concrete_component_a(self)
 
     def exclusive_method_of_concrete_component_a(self) -> str:
         """
-        Concrete Components may have special methods that don't exist in their
-        base class or interface. The Visitor is still able to use these methods
-        since it's aware of the component's concrete class.
+        Componentes concretos podem ter métodos especiais que não existem em sua classe
+        ou interface base. O visitante ainda é capaz de usar esses métodos, uma vez que
+        ele está ciente da classe concreta do componente.
         """
 
         return "A"
@@ -46,7 +45,7 @@ class ConcreteComponentA(Component):
 
 class ConcreteComponentB(Component):
     """
-    Same here: visitConcreteComponentB => ConcreteComponentB
+    Igual aqui: visitConcreteComponentB => ConcreteComponentB
     """
 
     def accept(self, visitor: Visitor):
@@ -58,9 +57,9 @@ class ConcreteComponentB(Component):
 
 class Visitor(ABC):
     """
-    The Visitor Interface declares a set of visiting methods that correspond to
-    component classes. The signature of a visiting method allows the visitor to
-    identify the exact class of the component that it's dealing with.
+    A interface Visitor declara um conjunto de métodos de visitação que correspondem às classes
+    de componentes. A assinatura de um método de visitação permite que o visitante identifique a
+    classe exata do componente com o qual está lidando.
     """
 
     @abstractmethod
@@ -73,13 +72,12 @@ class Visitor(ABC):
 
 
 """
-Concrete Visitors implement several versions of the same algorithm, which can
-work with all concrete component classes.
+Visitantes concretos implementam várias versões do mesmo algoritmo, que podem trabalhar com todas
+as classes concretas de componentes.
 
-You can experience the biggest benefit of the Visitor pattern when using it with
-a complex object structure, such as a Composite tree. In this case, it might be
-helpful to store some intermediate state of the algorithm while executing
-visitor's methods over various objects of the structure.
+Você pode experimentar o maior benefício do padrão Visitor ao usá-lo com uma estrutura de objeto complexa,
+como uma árvore de Composite. Nesse caso, pode ser útil armazenar algum estado intermediário do algoritmo
+enquanto executa os métodos do visitante em vários objetos da estrutura.
 """
 
 
@@ -101,9 +99,9 @@ class ConcreteVisitor2(Visitor):
 
 def client_code(components: List[Component], visitor: Visitor) -> None:
     """
-    The client code can run visitor operations over any set of elements without
-    figuring out their concrete classes. The accept operation directs a call to
-    the appropriate operation in the visitor object.
+    O código do cliente pode executar operações de visitante em qualquer conjunto de elementos sem precisar
+    descobrir suas classes concretas. A operação accept direciona uma chamada para a operação apropriada no
+    objeto visitante.
     """
 
     # ...
@@ -115,10 +113,10 @@ def client_code(components: List[Component], visitor: Visitor) -> None:
 if __name__ == "__main__":
     components = [ConcreteComponentA(), ConcreteComponentB()]
 
-    print("The client code works with all visitors via the base Visitor interface:")
+    print("O código do cliente funciona com todos os visitantes por meio da interface básica do visitante:")
     visitor1 = ConcreteVisitor1()
     client_code(components, visitor1)
 
-    print("It allows the same client code to work with different types of visitors:")
+    print("Permite que o mesmo código de cliente funcione com diferentes tipos de visitantes:")
     visitor2 = ConcreteVisitor2()
     client_code(components, visitor2)
