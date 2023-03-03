@@ -1,3 +1,5 @@
+# Padrão de projeto implementado por: Lucas Cruz Araújo.
+# GitHub: olucascruz
 class Memento:
     # Classe Memento contém o estado do objeto a ser restaurado.
     def __init__(self, state):
