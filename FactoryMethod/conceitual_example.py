@@ -11,7 +11,7 @@ class Creator(ABC):
     @abstractmethod
     def factory_method(self):
         """
-        Observe que o Criador também pode fornecer alguma 
+        Observe que o Creator também pode fornecer alguma 
         implementação padrão do método de fábrica.
         """
         pass
@@ -19,7 +19,7 @@ class Creator(ABC):
     def some_operation(self) -> str:
         """
         Observe também que, apesar do nome, a responsabilidade primária
-        do Criador não é criar produtos. Normalmente, ele contém alguma 
+        do Creator não é criar Products. Normalmente, ele contém alguma 
         lógica de negócios central que depende de objetos Product, retornados 
         pelo método de fábrica. As subclasses podem alterar indiretamente essa
         lógica de negócios substituindo o método de fábrica e retornando um tipo
@@ -82,7 +82,7 @@ class ConcreteProduct2(Product):
 
 def client_code(creator: Creator) -> None:
     """
-    O código do cliente funciona com uma instância de um oncrete creator, embora 
+    O código do cliente funciona com uma instância de um concrete creator, embora 
     por meio de sua interface básica. Desde que o cliente continue trabalhando com
     o creator por meio da interface base, você pode passar para ele qualquer subclasse do creator.
     """
@@ -92,9 +92,9 @@ def client_code(creator: Creator) -> None:
 
 
 if __name__ == "__main__":
-    print("App: Launched com o ConcreteCreator1.")
+    print("App: Exibido com o ConcreteCreator1.")
     client_code(ConcreteCreator1())
     print("\n")
 
-    print("App: Launched com o ConcreteCreator2.")
+    print("App: Exibido com o ConcreteCreator2.")
     client_code(ConcreteCreator2())
