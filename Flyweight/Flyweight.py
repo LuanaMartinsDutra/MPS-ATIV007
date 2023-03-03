@@ -1,3 +1,5 @@
+# ADRIANO HENRIQUE DE SOUZA ANDRADE :3
+
 class Object:
     def __init__(self, name, color):
         self.name = name
@@ -18,7 +20,7 @@ class ObjectFlyweight:
             # Se não existir, cria um novo objeto e adiciona na lista de objetos de cor
             self.color_objects[color] = Object(None, color)
         # Retorna um novo objeto com o mesmo nome e cor dos objetos existentes na lista
-        return Object(name, color)
+        return Object(name, color) 
 
 # Cria uma nova instância da classe ObjectFlyweight
 object_flyweight = ObjectFlyweight()
