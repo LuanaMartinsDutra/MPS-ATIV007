@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 # Classe abstrata que define a interface comum para todos os animais que podem ser criados
-class Animal(ABC):
+class Animal():
     @abstractmethod
     def make_sound(self):
         pass
@@ -16,7 +16,7 @@ class Cat(Animal):
         return "miau"
 
 # Classe abstrata que contém um factory method abstrato para criar objetos Animal
-class AnimalFactory(ABC):
+class AnimalFactory():
     @abstractmethod
     def create_animal(self) -> Animal:
         pass

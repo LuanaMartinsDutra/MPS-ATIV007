@@ -1,4 +1,5 @@
 # Factory Method
+> Melinne Diniz de Oliveira - 2115310021
 
 O **Factory Method** é um padrão de projeto
 criacional que fornece uma interface para criar objetos em uma superclasse, mas permite que as subclasses alterem o tipo de objetos que são criados.
